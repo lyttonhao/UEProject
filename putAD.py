@@ -1,7 +1,8 @@
 import cv2
 
-def placeAD(bg, fg, offsetx, offsety, scale=1.0):
+def putAD(bg, fg, offsetx, offsety, scale=1.0):
 	'''
+	put fg on bg with corresponding offset and scale
 	bg: background image
 	fg: foreground image
 	offsetx, offsety: offset of top-left corner in background image
@@ -35,13 +36,15 @@ def placeAD(bg, fg, offsetx, offsety, scale=1.0):
 
 	return result 
 
-bg = cv2.imread('images/test1.jpg')  # No Alpha channel
-fg = cv2.imread('images/fg1.png', cv2.IMREAD_UNCHANGED)  # Maybe including Alpha channel
+if __name__ == "__main__":
+	
+	bg = cv2.imread('images/test1.jpg')  # No Alpha channel
+	fg = cv2.imread('images/fg1.png', cv2.IMREAD_UNCHANGED)  # Maybe including Alpha channel
 
-result = placeAD(bg, fg, 200, 400, 1.0)
+	result = putAD(bg, fg, 200, 400, 1.0)
 
-cv2.imshow('img1', fg)
+	cv2.imshow('img1', fg)
 
-cv2.imshow('img', result)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+	cv2.imshow('img', result)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()

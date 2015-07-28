@@ -37,7 +37,7 @@ def check_bg(bg):
 	
 	return (measure_warm(bg) >= threshd_warm) and (measure_dark(bg) >= threshd_dark)
 
-def normalized_cut( img, ncut ):
+def normalized_cut( img, ncut = 10 ):
 	'''
 	segment image by normalized_cut
 	'''
@@ -112,7 +112,7 @@ def cal_heatmap( bg, fg ):
 
 def placeAD( bg, fg ):
 	'''
-	handle Case2
+	handle Case2, place fg image on bg image 
 	'''
 
 	if not check_bg(bg):
@@ -141,19 +141,20 @@ def visualize_heatmap( heatmap ):
 	plt.show()
 
 
-bg = cv2.imread('images2/christ5.jpg')  # No Alpha channel
-fg = cv2.imread('images2/cola.jpg', cv2.IMREAD_UNCHANGED)  # Maybe including Alpha channel
+if __name__ == '__main__':
+	bg = cv2.imread('images2/christ5.jpg')  # No Alpha channel
+	fg = cv2.imread('images2/cola.jpg', cv2.IMREAD_UNCHANGED)  # Maybe including Alpha channel
 
 
-result = placeAD(bg, fg)
+	result = placeAD(bg, fg)
 
-cv2.imwrite("images2/result5.png", result)
+	cv2.imwrite("images2/result5.png", result)
 
-#visual_heatmap( heatmap )
-#visual_heatmap
+	#visual_heatmap( heatmap )
+	#visual_heatmap
 
-#cv2.imshow('img1', fg)
+	#cv2.imshow('img1', fg)
 
-cv2.imshow('result', result)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+	cv2.imshow('result', result)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
